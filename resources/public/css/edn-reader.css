@@ -1,0 +1,54 @@
+/* Styles for the EDN -> HTML react component
+   taken from the awesome https://github.com/bhauman/devcards */
+.com-rigsomelight-rendered-edn .collection {
+    display: flex;
+    display: -webkit-flex;
+}
+
+.com-rigsomelight-rendered-edn .keyval {
+    display: flex;
+    display: -webkit-flex;    
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;    
+}
+
+.com-rigsomelight-rendered-edn .keyval > .keyword {
+    color: #a94442; 
+}
+
+.com-rigsomelight-rendered-edn .keyval > *:first-child {
+    margin: 0px 3px;
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+}
+
+.com-rigsomelight-rendered-edn .keyval > *:last-child {
+    margin: 0px 3px;
+}
+
+.com-rigsomelight-rendered-edn .opener {
+    color: #999;
+    margin: 0px 4px;
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;    
+}
+
+.com-rigsomelight-rendered-edn .closer {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+    margin: 0px 3px;    
+    color: #999;
+}
+
+.com-rigsomelight-rendered-edn .string {
+    color: #428bca;
+}
+
+.com-rigsomelight-rendered-edn .string .opener,
+.com-rigsomelight-rendered-edn .string .closer {
+    display: inline;
+    margin: 0px;
+    color: #428bca;    
+}
