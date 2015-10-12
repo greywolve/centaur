@@ -9,7 +9,8 @@
                  [cljsjs/marked "0.3.5-0"]
                  [cljsjs/highlight "8.4-0"]
                  [devcards "0.2.0-3"]
-                 [bidi "1.20.3"]]
+                 [bidi "1.20.3"]
+                 [garden "1.3.0-SNAPSHOT"]]
 
   :plugins [[lein-cljsbuild "1.1.0"]
             [lein-figwheel "0.4.1"]]

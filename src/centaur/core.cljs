@@ -1,7 +1,8 @@
 (ns ^:figwheel-always centaur.core
   (:require [centaur.common :as c :refer [md action!]]
-            [centaur.pages.index]
             [centaur.pages.about]
+            [centaur.pages.index]
+            [centaur.styles :refer [insert-app-styles!]]
             [cljs.core.async :refer [put! chan close! timeout]]
             [devcards.util.edn-renderer :refer [html-edn]]
             [bidi.bidi :as bidi]
@@ -95,24 +96,28 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Root component
 
+(insert-app-styles!)
+
 (rum/defc app < rum/static [state inputs]
   [:div
    (c/page (:current-view state) state inputs)])
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Rendering and effects loop
+
+(defn get-element-by-id [id]
+  (.getElementById js/document id))
 
 (defonce render-and-effects-loop
     (add-watch app-state :render
                     (fn [_ _ _ state]
-                      (rum/mount (app @app-state inputs) js/document.body)
+                      (rum/mount (app @app-state inputs) (get-element-by-id "app"))
                       (doseq [e (:effects state)]
                         (c/effect state inputs e)))))
 
 ;; get the ball rolling
-(swap! app-state update-in [:__figwheel_counter] inc)
 
+(swap! app-state update-in [:__figwheel_counter] inc)
 
 (defn on-js-reload []
   ;; optionally touch your app-state to force rerendering depending on
